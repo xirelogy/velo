@@ -134,6 +134,11 @@ time of writing).
 
 - A text area corresponds to a (normally) multi-row input as in HTML.
 
+##### Thumbnail (`x-velo::thumbnail`)
+
+- A thumbnail element for an image
+- Use the attribute `data-src` to specify the image source.
+
 ##### Toast (`x-velo:container.toast`)
 
 - A toast is a frame for showing toast notification message (eg. Bootstrap's Toast component).

@@ -22,6 +22,7 @@ use Xirelogy\Velo\View\Components\Control\Radio;
 use Xirelogy\Velo\View\Components\Control\Select;
 use Xirelogy\Velo\View\Components\Control\Textarea;
 use Xirelogy\Velo\View\Components\Loading;
+use Xirelogy\Velo\View\Components\Thumbnail;
 
 class Bridge extends BaseBridge
 {
@@ -57,6 +58,8 @@ class Bridge extends BaseBridge
                 return ['container', 'py-3'];
             case Select::class:
                 return ['form-control', 'form-select'];
+            case Thumbnail::class:
+                return ['img-thumbnail'];
             case Input::class:
             case Textarea::class:
                 return ['form-control'];
