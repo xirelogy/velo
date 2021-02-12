@@ -1,0 +1,23 @@
+{
+	"name": "xirelogy/velo",
+	"description": "Velo blade components",
+	"type": "library",
+	"license": "MIT",
+	"require-dev": {
+	},
+	"require": {
+		"php": "^7.0"
+	},
+	"autoload": {
+		"psr-4": {
+			"Xirelogy\\Velo\\": "src/"
+		}
+	},
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Xirelogy\\Velo\\VeloServiceProvider"
+      ]
+    }
+  }
+}

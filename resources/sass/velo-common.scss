@@ -1,0 +1,33 @@
+.velo-fullpage {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.velo-flex-spring {
+  flex-grow: 1;
+}
+
+.velo-rounded {
+  border-radius: 50%;
+}
+
+.velo-rounded-pill {
+  border-radius: 50rem;
+}
+
+.velo-text-nowrap {
+  white-space: nowrap;
+}
+
+.velo-text-ellipsis {
+  oveflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.velo-thumbnail {
+  width: 30vw;
+  max-width: 200px;
+}
