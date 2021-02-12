@@ -145,3 +145,9 @@ time of writing).
 - Toast title can be specified in the `title` slot.
 - Use the attribute `x-close-button` (without value) to indicate a close button is required.
 
+### Javascript library
+
+Velo provides some accompanying Javascripts so that dynamic rendering and client side interaction is possible.
+
+- Please include dependency to `@xirelogy/xw` manually in your project.
+- The javascripts are provided in each individual modules and should be imported into where it should be used.
