@@ -16,7 +16,7 @@
   "extra": {
     "laravel": {
       "providers": [
-        "Xirelogy\\Velo\\VeloServiceProvider"
+        "Xirelogy\\Velo\\ServiceProvider"
       ]
     }
   }
