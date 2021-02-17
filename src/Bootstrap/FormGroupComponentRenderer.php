@@ -24,6 +24,20 @@ class FormGroupComponentRenderer implements ComponentRenderer
 
         $context->exportSlot($contents);
 
+        $slotValidateSucceed = $context->getSlot('validateSucceed');
+        if (!is_null($slotValidateSucceed)) {
+            $contents[] = new ElementDefinition('div', [
+                'class' => 'valid-feedback',
+            ], $slotValidateSucceed);
+        }
+
+        $slotValidateFailed = $context->getSlot('validateFailed');
+        if (!is_null($slotValidateFailed)) {
+            $contents[] = new ElementDefinition('div', [
+                'class' => 'invalid-feedback',
+            ], $slotValidateFailed);
+        }
+
         $context->addClass('form-group');
         return new ElementDefinition('div', $context->finalizeAttributes(), $contents);
     }
