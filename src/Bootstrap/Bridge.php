@@ -27,6 +27,16 @@ use Xirelogy\Velo\View\Components\Thumbnail;
 class Bridge extends BaseBridge
 {
     /**
+     * Get the Javascript definition name
+     * @return string
+     */
+    protected function getJsName() : string
+    {
+        return 'Xirelogy.Velo.Bootstrap';
+    }
+
+
+    /**
      * @inheritDoc
      */
     protected function getStyles() : iterable

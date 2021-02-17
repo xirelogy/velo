@@ -3,6 +3,7 @@
 namespace Xirelogy\Velo;
 
 use Xirelogy\Velo\Html\ElementDefinition;
+use Xirelogy\Velo\Html\Renderer;
 use Xirelogy\Velo\View\ComponentRenderer;
 use Xirelogy\Velo\View\RenderContext;
 
@@ -12,7 +13,7 @@ abstract class Bridge
      * Render head CSS contents
      * @return string
      */
-    public function renderHeadCss(): string
+    public function renderHeadCss() : string
     {
         $ret = '';
         foreach ($this->getStyles() as $style) {
@@ -24,10 +25,32 @@ abstract class Bridge
 
 
     /**
+     * Render the script
+     */
+    public function renderScript() : string
+    {
+        $scripts = [];
+
+        $scripts[] = 'window.$velo = \'' . $this->getJsName() . '\';';
+
+        $script = new ElementDefinition('script', [], $scripts);
+
+        return Renderer::finalize($script);
+    }
+
+
+    /**
+     * Get the Javascript definition name
+     * @return string
+     */
+    protected abstract function getJsName() : string;
+
+
+    /**
      * Get all styles
      * @return iterable<ElementDefinition>
      */
-    protected abstract function getStyles(): iterable;
+    protected abstract function getStyles() : iterable;
 
 
     /**
@@ -47,7 +70,7 @@ abstract class Bridge
      * @param string $className Component class name
      * @return string[]
      */
-    public function getExtraClasses(string $className): array
+    public function getExtraClasses(string $className) : array
     {
         return [];
     }

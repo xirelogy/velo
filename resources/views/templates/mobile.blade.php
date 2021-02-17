@@ -11,5 +11,6 @@
 <body>
 @section('body')
 @show
+<?php echo \Xirelogy\Velo\BridgeFactory::getCurrentInstance()->renderScript() ?>
 </body>
 </html>
