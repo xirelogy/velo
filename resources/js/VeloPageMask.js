@@ -101,6 +101,14 @@ class VeloPageMask_Static {
         };
 
 
+        /**
+         * Remove the mask
+         */
+        ret.remove = function() {
+            _element.remove();
+        };
+
+
         // Call onSetup if required
         if (isCreated && _onSetup !== null) {
             _onSetup(ret);
