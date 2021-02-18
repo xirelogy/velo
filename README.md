@@ -88,6 +88,8 @@ time of writing).
 
 - A form group indicates a section of input in a form.
 - The associated label for the input can be specified in the `label` slot.
+- Content for succeeded validation can be specified in the `validateSucceed` slot.
+- Content for failed validation can be specified in the `validateFailed` slot.
 
 ##### Full page (`x-velo::container.full-page`)
 
