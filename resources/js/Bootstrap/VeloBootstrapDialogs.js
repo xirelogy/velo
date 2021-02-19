@@ -195,12 +195,13 @@ export default class VeloBootstrapDialogs {
 
         const target = createPromptDialog();
 
+        const headerElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-header');
         const titleElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-header > h5.modal-title');
         if (titleHTML) {
             titleElement.innerHTML = titleHTML;
-            titleElement.style.display = 'block';
+            headerElement.style.display = 'block';
         } else {
-            titleElement.style.display = 'none';
+            headerElement.style.display = 'none';
         }
 
         const bodyElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-body');
@@ -219,6 +220,28 @@ export default class VeloBootstrapDialogs {
             await this.hideModal(target);
             _localDismiss();
         };
+
+        buttonElement.classList.remove('btn-success');
+        buttonElement.classList.remove('btn-danger');
+        buttonElement.classList.remove('btn-warning');
+        buttonElement.classList.remove('btn-primary');
+
+        switch (type) {
+            case 'success':
+                buttonElement.classList.add('btn-success');
+                break;
+            case 'error':
+            case 'danger':
+                buttonElement.classList.add('btn-danger');
+                break;
+            case 'warn':
+            case 'warning':
+                buttonElement.classList.add('btn-warning');
+                break;
+            default:
+                buttonElement.classList.add('btn-primary');
+                break;
+        }
 
         buttonElement.addEventListener('click', closeFunction);
 
