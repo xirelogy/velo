@@ -118,10 +118,12 @@ time of writing).
 - Loading shows an indicator that loading is in progress.
 - Use the attribute `x-type` to select the type of loading to be displayed (Currently `spin` and `grow` supported, `spin` is the default).
 - Use the attribute `x-parent` to specify that the loading is used in specific context (Currently `button` supported).
-  
-##### Page (`x-velo:container.page`)
+
+##### Page (`x-velo::container.page`)
 
 - A page is a container for the main page content.
+- Use the attribute `x-full-x` (without value) to specify the page to take the full width.
+- Use the attribute `x-full-y` (without value) to specify the page to take the full height.
 
 ##### Radio (`x-velo::control.radio`)
 

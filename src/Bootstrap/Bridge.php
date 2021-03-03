@@ -64,8 +64,6 @@ class Bridge extends BaseBridge
         switch ($className) {
             case InputGroup::class:
                 return ['input-group'];
-            case Page::class:
-                return ['container', 'py-3'];
             case Select::class:
                 return ['form-control', 'form-select'];
             case Thumbnail::class:
@@ -103,6 +101,8 @@ class Bridge extends BaseBridge
                 return new InputGroupStaticComponentRenderer('input-group-append');
             case Loading::class:
                 return new LoadingComponentRenderer();
+            case Page::class:
+                return new PageComponentRenderer();
             case Radio::class:
                 return new RadioComponentRenderer();
             case Toast::class:
