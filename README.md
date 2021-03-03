@@ -113,7 +113,7 @@ time of writing).
   </x-velo::container.input-group>
   ```
 
-##### Loading (`x-velo:loading`)
+##### Loading (`x-velo::loading`)
 
 - Loading shows an indicator that loading is in progress.
 - Use the attribute `x-type` to select the type of loading to be displayed (Currently `spin` and `grow` supported, `spin` is the default).
