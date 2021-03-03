@@ -132,6 +132,18 @@ time of writing).
 - Use the attribute `x-full-x` (without value) to specify the page to take the full width.
 - Use the attribute `x-full-y` (without value) to specify the page to take the full height.
 
+#### Pop menu (`x-velo::container.pop-menu`)
+
+- A pop menu is a container for a pop-up menu.
+
+#### Pop menu item (`x-velo::tag.pop-menu-item`)
+
+- A pop menu item is an item under a pop menu container.
+- Use the attribute `x-header` (without value) to specify the current item is of header style.
+- Use the attribute `x-divider` (without value) to specify the current item is a divider.
+- Use the attribute `x-disabled` (without value) to specify the current item is disabled.
+- Use the attribute `x-href` to specify the current item is a link (to the href target specified in the attribute).
+
 ##### Radio (`x-velo::control.radio`)
 
 - A radio is a control with 'selected' or 'unselected' status.

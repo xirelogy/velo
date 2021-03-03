@@ -15,6 +15,7 @@ use Xirelogy\Velo\View\Components\Container\InputGroupPrefix;
 use Xirelogy\Velo\View\Components\Container\InputGroupSuffix;
 use Xirelogy\Velo\View\Components\Container\NavBar;
 use Xirelogy\Velo\View\Components\Container\Page;
+use Xirelogy\Velo\View\Components\Container\PopMenu;
 use Xirelogy\Velo\View\Components\Container\Toast;
 use Xirelogy\Velo\View\Components\Control\Button;
 use Xirelogy\Velo\View\Components\Control\CheckBox;
@@ -23,6 +24,7 @@ use Xirelogy\Velo\View\Components\Control\Radio;
 use Xirelogy\Velo\View\Components\Control\Select;
 use Xirelogy\Velo\View\Components\Control\Textarea;
 use Xirelogy\Velo\View\Components\Loading;
+use Xirelogy\Velo\View\Components\Tag\PopMenuItem;
 use Xirelogy\Velo\View\Components\Thumbnail;
 
 class Bridge extends BaseBridge
@@ -65,6 +67,8 @@ class Bridge extends BaseBridge
         switch ($className) {
             case InputGroup::class:
                 return ['input-group'];
+            case PopMenu::class:
+                return ['dropdown-menu'];
             case Select::class:
                 return ['form-control', 'form-select'];
             case Thumbnail::class:
@@ -106,6 +110,8 @@ class Bridge extends BaseBridge
                 return new NavBarComponentRenderer();
             case Page::class:
                 return new PageComponentRenderer();
+            case PopMenuItem::class:
+                return new PopMenuItemComponentRenderer();
             case Radio::class:
                 return new RadioComponentRenderer();
             case Toast::class:
