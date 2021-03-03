@@ -4,13 +4,31 @@ import veloPageMask from '../VeloPageMask';
 
 const _l = Xw.i18n.init('VeloBootstrapDialogs');
 
+
+/**
+ * ID of the mask
+ * @type {string}
+ */
 const MASK_ID = 'velo-bootstrap-modal-mask';
 
+/**
+ * ID of the prompt
+ * @type {string}
+ */
 const PROMPT_ID = 'velo-bootstrap-prompt';
 
+/**
+ * ID of the prompt's button
+ * @type {string}
+ */
 const PROMPT_BUTTON_ID = 'velo-bootstrap-prompt-button';
 
 
+/**
+ * Listeners for dialog events
+ * @type {Map<HTMLElement, function(Event)>}
+ * @private
+ */
 const _dialogListeners = new Map();
 
 
@@ -192,9 +210,9 @@ export default class VeloBootstrapDialogs {
         const titleElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-header > h5.modal-title');
         if (titleHTML) {
             titleElement.innerHTML = titleHTML;
-            headerElement.style.display = 'block';
+            Xw.doms.show(headerElement);
         } else {
-            headerElement.style.display = 'none';
+            Xw.doms.hide(headerElement);
         }
 
         const bodyElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-body');
