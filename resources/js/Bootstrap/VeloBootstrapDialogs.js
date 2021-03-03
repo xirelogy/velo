@@ -259,6 +259,7 @@ export default class VeloBootstrapDialogs {
         await this.showModal(target, {
             onDismiss: _localDismiss,
         });
+        buttonElement.focus();
 
         return target;
     }
