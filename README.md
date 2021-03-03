@@ -2,7 +2,7 @@
 
 ### Introduction
 
-Velo provides blade components that can be used to tag HTML elements independent of its theme. Purpose is to make 
+Velo provides blade components that can be used to tag HTML elements independent of its theme. Purpose is to make
 customizing and theming more available. Velo by default ships with a bootstrap theme that is uses Bootstrap 4.6 (at the
 time of writing).
 
@@ -12,7 +12,7 @@ time of writing).
   ```
   composer require xirelogy/velo
   ```
-  
+
 ### Using velo
 
 - The velo template can be invoked using:
@@ -20,18 +20,18 @@ time of writing).
   @extends('velo::templates.mobile')
   ```
 - The provider for velo theme can be configured from `config('view.velo.bridge')`
-  - Bootstrap is provided from the class: `Xirelogy\Velo\Bootstrap\Bridge`
-  - CSS providing the bootstrap styles can be configured from:
-    ```
-    config('view.velo.bootstrap.css') // URL to the bootstrap CSS
-    config('view.velo.bootstrap.css_integrity') // The integrity of the bootstrap CSS, optional
-    ```
+    - Bootstrap is provided from the class: `Xirelogy\Velo\Bootstrap\Bridge`
+    - CSS providing the bootstrap styles can be configured from:
+      ```
+      config('view.velo.bootstrap.css') // URL to the bootstrap CSS
+      config('view.velo.bootstrap.css_integrity') // The integrity of the bootstrap CSS, optional
+      ```
 - Velo provides CSS classes starting with the `velo-` prefix but must be included in your project's relevant style
   files written is SASS:
   ```scss
   @import "vendor/xirelogy/velo/resources/sass/velo-common";
   ```
-  
+
 ### Supported components
 
 ##### Alert (`x-velo::container.alert`)
@@ -75,7 +75,7 @@ time of writing).
     </x-velo::tag.data-entry>
   </x-velo::container.data>
   ```
-  
+
 ##### Dialog (`x-velo::container.dialog`)
 
 - A modal dialog frame with possible title and footer (eg. Bootstrap's Modal component).
@@ -118,6 +118,12 @@ time of writing).
 - Loading shows an indicator that loading is in progress.
 - Use the attribute `x-type` to select the type of loading to be displayed (Currently `spin` and `grow` supported, `spin` is the default).
 - Use the attribute `x-parent` to specify that the loading is used in specific context (Currently `button` supported).
+
+#### Nav bar (`x-velo::container.nav-bar`)
+
+- A navigation bar is a bar for page navigation purpose normally placed on top of a page.
+- Use the attribute `x-foreground` to specify the foreground theme (e.g. `light`, `dark`).
+- Use the attribute `x-background` to specify the background theme (e.g. `light`, `dark`).
 
 ##### Page (`x-velo::container.page`)
 

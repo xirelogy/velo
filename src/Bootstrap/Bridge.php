@@ -13,6 +13,7 @@ use Xirelogy\Velo\View\Components\Container\FormGroup;
 use Xirelogy\Velo\View\Components\Container\InputGroup;
 use Xirelogy\Velo\View\Components\Container\InputGroupPrefix;
 use Xirelogy\Velo\View\Components\Container\InputGroupSuffix;
+use Xirelogy\Velo\View\Components\Container\NavBar;
 use Xirelogy\Velo\View\Components\Container\Page;
 use Xirelogy\Velo\View\Components\Container\Toast;
 use Xirelogy\Velo\View\Components\Control\Button;
@@ -101,6 +102,8 @@ class Bridge extends BaseBridge
                 return new InputGroupStaticComponentRenderer('input-group-append');
             case Loading::class:
                 return new LoadingComponentRenderer();
+            case NavBar::class:
+                return new NavBarComponentRenderer();
             case Page::class:
                 return new PageComponentRenderer();
             case Radio::class:
