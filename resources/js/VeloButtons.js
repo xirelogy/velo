@@ -2,6 +2,24 @@ import velo from './Velo';
 import Xw from '@xirelogy/xw';
 
 
+/**
+ * Translate and get busy text
+ * @param {HTMLElement} target
+ * @param {string} [textHtml]
+ * @return {string}
+ */
+function translateTextHtml(target, textHtml) {
+    if (Xw.$.isDefined(textHtml)) return textHtml;
+
+    const attrDataBusy = target.getAttribute('data-busy');
+    if (attrDataBusy) {
+        return Xw.$.escapeHtml(attrDataBusy);
+    }
+
+    return target.innerHTML;
+}
+
+
 export default class VeloButtons {
 
     /**
@@ -20,7 +38,7 @@ export default class VeloButtons {
      */
     startBusy(target, textHTML) {
         if (this._inst) {
-            return this._inst.startBusy(target, textHTML);
+            return this._inst.startBusy(target, translateTextHtml(target, textHTML));
         }
 
         return new Xw.CommonFinalizable({
