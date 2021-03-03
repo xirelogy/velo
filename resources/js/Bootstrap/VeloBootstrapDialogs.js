@@ -1,4 +1,5 @@
 import Xw from '@xirelogy/xw';
+import veloBootstrapCommon from './VeloBootstrapCommon';
 import veloPageMask from '../VeloPageMask';
 
 
@@ -82,17 +83,12 @@ export default class VeloBootstrapDialogs {
         const mask = veloPageMask.create(MASK_ID);
         document.body.appendChild(target);
 
+        const showArgs = {};
+        if (_showMs !== null) showArgs.durationMs = _showMs;
+
         await Xw.axw.waitAll([
             mask.show(),
-            Xw.doms.animate(target, {
-                opacity: ['0', '100'],
-            }, {
-                duration: _showMs,
-                easing: 'linear',
-                beforeAnimation: () => {
-                    target.style.display = 'block';
-                },
-            }),
+            veloBootstrapCommon.animateFadeIn(target, showArgs),
         ]);
 
         const outerListener = async (ev) => {
@@ -141,17 +137,13 @@ export default class VeloBootstrapDialogs {
 
         const mask = veloPageMask.create(MASK_ID);
 
+        const hideArgs = {};
+        if (_hideMs !== null) hideArgs.durationMs = _hideMs;
+
         await Xw.axw.waitAll([
-            Xw.doms.animate(target, {
-                opacity: ['100', '0'],
-            }, {
-                duration: _hideMs,
-                easing: 'linear',
-            }),
+            veloBootstrapCommon.animateFadeOut(target, hideArgs),
             mask.hide(),
         ]);
-
-        target.style.display = 'none';
 
         if (_dialogListeners.has(target)) {
             target.removeEventListener('click', _dialogListeners.get(target));
