@@ -2,6 +2,7 @@ import Xw from '@xirelogy/xw';
 import veloBootstrapCommon from './VeloBootstrapCommon';
 import veloPageMask from '../VeloPageMask';
 
+const _l = Xw.i18n.init('VeloBootstrapDialogs');
 
 const MASK_ID = 'velo-bootstrap-modal-mask';
 
@@ -200,7 +201,7 @@ export default class VeloBootstrapDialogs {
         bodyElement.innerHTML = messageHTML;
 
         const buttonElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-footer > button.btn');
-        buttonElement.innerHTML = 'Ok';
+        buttonElement.innerHTML = _l('Ok');
 
         const _localDismiss = () => {
             buttonElement.removeEventListener('click', closeFunction);
