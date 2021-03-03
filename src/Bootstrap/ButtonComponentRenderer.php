@@ -23,6 +23,18 @@ class ButtonComponentRenderer implements ComponentRenderer
             $context->addAttribute('type', 'button');
         }
 
+        $attrParent = $context->getExtractedAttribute('x-parent');
+        if (!is_null($attrParent)) {
+            switch ($attrParent) {
+                case 'nav-bar':
+                case 'navbar':
+                    $context->addClass('navbar-toggler');
+                    break;
+                default:
+                    break;
+            }
+        }
+
         $isOutline = $context->hasExtractedAttribute('x-outline');
 
         $context->addClass('btn');

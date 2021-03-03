@@ -46,6 +46,7 @@ time of writing).
 - Use the attribute `x-type` to specify the button type (Supported values: `primary`, `secondary`, `success`, `danger`, `warning`, `info`).
 - Use the attribute `x-outline` (without value) to indicate that the button is a outline button.
 - Use the attribute `x-action` to specify the button's action type (Default is `button`).
+- Use the attribute `x-parent` to specify the button's parent (Supported values: `nav-bar`).
 - Use the data `busy` (attribute `data-busy`) to specify a text that can be used when button is busy.
 
 ##### Card (`x-velo::container.card`)
