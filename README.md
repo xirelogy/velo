@@ -142,6 +142,18 @@ time of writing).
 - Use the attribute `x-full-x` (without value) to specify the page to take the full width.
 - Use the attribute `x-full-y` (without value) to specify the page to take the full height.
 
+##### Paginator (`x-velo::container.paginator`)
+
+- A paginator is a container to navigate between multiple pages.
+- Should contain items of `x-velo::tag.paginator-item`.
+
+##### Paginator item (`x-velo::tag.paginator-item`)
+
+- A paginator item is an item within a paginator container.
+- Use the attribute `x-type` to specify special item types (`prev` for 'previous page', `next` for 'next page' and `more` for the ellipsis).
+- Use the attribute `x-active` (without value) to indicate that the item is active.
+- Use the attribute `x-disabled` (without value) to indicate that the item is disabled.
+
 ##### Pop menu (`x-velo::container.pop-menu`)
 
 - A pop menu is a container for a pop-up menu.
