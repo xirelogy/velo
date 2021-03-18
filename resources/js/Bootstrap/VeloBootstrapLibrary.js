@@ -4,6 +4,7 @@ import VeloBootstrapButtons from './VeloBootstrapButtons';
 import VeloBootstrapDialogs from './VeloBootstrapDialogs';
 import VeloBootstrapForms from './VeloBootstrapForms';
 import VeloBootstrapPopMenus from './VeloBootstrapPopMenus';
+import VeloBootstrapTabs from './VeloBootstrapTabs';
 
 
 /**
@@ -25,6 +26,9 @@ export default function boot() {
         });
         velo.registerProvider(libraryName, 'VeloPopMenus', () => {
             return new VeloBootstrapPopMenus();
+        });
+        velo.registerProvider(libraryName, 'VeloTabs', (args) => {
+            return new VeloBootstrapTabs(args);
         });
     });
 }

@@ -23,6 +23,8 @@ use Xirelogy\Velo\View\Components\Control\CheckBox;
 use Xirelogy\Velo\View\Components\Control\Input;
 use Xirelogy\Velo\View\Components\Control\Radio;
 use Xirelogy\Velo\View\Components\Control\Select;
+use Xirelogy\Velo\View\Components\Control\TabBar;
+use Xirelogy\Velo\View\Components\Control\TabItem;
 use Xirelogy\Velo\View\Components\Control\Textarea;
 use Xirelogy\Velo\View\Components\Loading;
 use Xirelogy\Velo\View\Components\Tag\BreadcrumbItem;
@@ -120,6 +122,10 @@ class Bridge extends BaseBridge
                 return new PopMenuItemComponentRenderer();
             case Radio::class:
                 return new RadioComponentRenderer();
+            case TabBar::class:
+                return new TabBarComponentRenderer();
+            case TabItem::class:
+                return new TabItemComponentRenderer();
             case Toast::class:
                 return new ToastComponentRenderer();
             default:

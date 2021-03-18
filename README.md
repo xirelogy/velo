@@ -164,6 +164,17 @@ time of writing).
 - A select is a control with multiple options for selection, as in HTML.
 - Available options are specified in it's corresponding `<option>` tags.
 
+##### Tab bar (`x-velo::control.tab-bar`)
+
+- A tab bar is a container control consisting of tab items.
+- Should contain items of `x-velo::control.tab-item`.
+
+##### Tab item (`x-velo::control.tab-item`)
+
+- A tab item is a control item representing a single tab.
+- Use the attribute `x-active` (without value) to indicate that the tab item is active.
+- Use the attribute `x-disabled` (without value) to indicate that the tab item is disabled.
+
 ##### Text area (`x-velo::container:textarea`)
 
 - A text area corresponds to a (normally) multi-row input as in HTML.
