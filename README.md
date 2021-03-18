@@ -175,3 +175,9 @@ Velo provides some accompanying Javascripts so that dynamic rendering and client
 
 - Please include dependency to `@xirelogy/xw` manually in your project.
 - The javascripts are provided in each individual modules and should be imported into where it should be used.
+
+#### Additional Javascript library
+
+When using Bootstrap customization, the following additional Javascript dependency is required:
+
+- `@popperjs/core`
