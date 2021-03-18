@@ -43,6 +43,7 @@ time of writing).
 ##### Breadcrumb (`x-velo::container.breadcrumb`)
 
 - A breadcrumb container for multiple breadcrumb items.
+- Should contain imtes of `x-velo::tag.breadcrumb-item`.
 
 ##### Breadcrumb item (`x-velo::tag.breadcrumb-item`)
 
