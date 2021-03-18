@@ -40,6 +40,15 @@ time of writing).
 - Use the attribute `x-type` to specify the alert type (Supported values: `primary`, `secondary`, `success`, `danger`, `warning`, `info`).
 - Use the attribute `x-close-button` (without value) to indicate a close button is required.
 
+##### Breadcrumb (`x-velo::container.breadcrumb`)
+
+- A breadcrumb container for multiple breadcrumb items.
+
+##### Breadcrumb item (`x-velo::tag.breadcrumb-item`)
+
+- A breadcrumb item is a child item within a breadcrumb container.
+- Use the attribute `x-active` (without value) to indicate that the item is active.
+
 ##### Button (`x-velo::control.button`)
 
 - A button is a clickable control.

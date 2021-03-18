@@ -7,6 +7,7 @@ use Xirelogy\Velo\Exceptions\UndefinedException;
 use Xirelogy\Velo\Html\ElementDefinition;
 use Xirelogy\Velo\View\ComponentRenderer;
 use Xirelogy\Velo\View\Components\Container\Alert;
+use Xirelogy\Velo\View\Components\Container\Breadcrumb;
 use Xirelogy\Velo\View\Components\Container\Card;
 use Xirelogy\Velo\View\Components\Container\Dialog;
 use Xirelogy\Velo\View\Components\Container\FormGroup;
@@ -24,6 +25,7 @@ use Xirelogy\Velo\View\Components\Control\Radio;
 use Xirelogy\Velo\View\Components\Control\Select;
 use Xirelogy\Velo\View\Components\Control\Textarea;
 use Xirelogy\Velo\View\Components\Loading;
+use Xirelogy\Velo\View\Components\Tag\BreadcrumbItem;
 use Xirelogy\Velo\View\Components\Tag\PopMenuItem;
 use Xirelogy\Velo\View\Components\Thumbnail;
 
@@ -90,6 +92,10 @@ class Bridge extends BaseBridge
         switch ($className) {
             case Alert::class:
                 return new AlertComponentRenderer();
+            case Breadcrumb::class:
+                return new BreadcrumbComponentRenderer();
+            case BreadcrumbItem::class:
+                return new BreadcrumbItemComponentRenderer();
             case Button::class:
                 return new ButtonComponentRenderer();
             case Card::class:
