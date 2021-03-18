@@ -130,7 +130,7 @@ time of writing).
 - Use the attribute `x-type` to select the type of loading to be displayed (Currently `spin` and `grow` supported, `spin` is the default).
 - Use the attribute `x-parent` to specify that the loading is used in specific context (Currently `button` supported).
 
-#### Nav bar (`x-velo::container.nav-bar`)
+##### Nav bar (`x-velo::container.nav-bar`)
 
 - A navigation bar is a bar for page navigation purpose normally placed on top of a page.
 - Use the attribute `x-foreground` to specify the foreground theme (e.g. `light`, `dark`).
@@ -142,11 +142,11 @@ time of writing).
 - Use the attribute `x-full-x` (without value) to specify the page to take the full width.
 - Use the attribute `x-full-y` (without value) to specify the page to take the full height.
 
-#### Pop menu (`x-velo::container.pop-menu`)
+##### Pop menu (`x-velo::container.pop-menu`)
 
 - A pop menu is a container for a pop-up menu.
 
-#### Pop menu item (`x-velo::tag.pop-menu-item`)
+##### Pop menu item (`x-velo::tag.pop-menu-item`)
 
 - A pop menu item is an item under a pop menu container.
 - Use the attribute `x-header` (without value) to specify the current item is of header style.
