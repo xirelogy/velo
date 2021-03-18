@@ -37,16 +37,17 @@ class Velo {
     /**
      * Get current provider
      * @param {string} className The class name
+     * @param {*} [args] Arguments to create the current provider
      * @return {*|null} The current provider, if available
      */
-    getCurrentProvider(className) {
+    getCurrentProvider(className, args) {
         const currentLibraryName = window.$velo || '';
         const key = makeKey(currentLibraryName, className);
 
         if (!Xw.$.isDefined(_providers[key])) return null;
-        return (_providers[key])();
+        return (_providers[key])(args);
     }
-    
+
 }
 
 
