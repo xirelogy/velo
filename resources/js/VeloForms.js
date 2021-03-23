@@ -1,3 +1,4 @@
+import Xw from '@xirelogy/xw';
 import velo from './Velo';
 
 
@@ -41,5 +42,22 @@ export default class VeloForms {
         if (this._inst) {
             this._inst.setControlValid(control);
         }
+    }
+
+
+    /**
+     * Bind default handler of interact's validity
+     * @param {XwInteracts} interacts
+     */
+    bindInteractsDefaultValidity(interacts) {
+        interacts.onValidated((control, e) => {
+            if (control === null) return;
+
+            this.resetControlValidity(control);
+
+            if (e !== null) {
+                this.setControlInvalid(control);
+            }
+        });
     }
 }
