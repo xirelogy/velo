@@ -49,4 +49,19 @@ export default class VeloDialogs {
             await this._inst.prompt(messageHTML, titleHTML, type);
         }
     }
+
+
+    /**
+     * Show a prompt (equivalent to alert)
+     * @param {string} messageHTML Message (HTML) in the prompt
+     * @param {string} [titleHTML] Title (HTML) of the prompt
+     * @param {string} [type=info] Type of the prompt
+     * @param {object} [options] Optional options
+     * @return {Promise<boolean>}
+     */
+    async confirm(messageHTML, titleHTML, type, options) {
+        if (this._inst) {
+            return await this._inst.confirm(messageHTML, titleHTML, type, options);
+        }
+    }
 }

@@ -18,10 +18,16 @@ const MASK_ID = 'velo-bootstrap-modal-mask';
 const PROMPT_ID = 'velo-bootstrap-prompt';
 
 /**
- * ID of the prompt's button
+ * ID of the prompt's accept button
  * @type {string}
  */
-const PROMPT_BUTTON_ID = 'velo-bootstrap-prompt-button';
+const PROMPT_BUTTON_OK_ID = 'velo-bootstrap-prompt-ok-button';
+
+/**
+ * ID of the prompt's cancel button
+ * @type {string}
+ */
+const PROMPT_BUTTON_CANCEL_ID = 'velo-bootstrap-prompt-cancel-button';
 
 
 /**
@@ -69,12 +75,22 @@ function createPromptDialog() {
     const footerElement = document.createElement('div');
     footerElement.classList.add('modal-footer');
 
-    const buttonElement = document.createElement('button');
-    buttonElement.id = PROMPT_BUTTON_ID;
-    buttonElement.setAttribute('type', 'button');
-    buttonElement.classList.add('btn');
-    buttonElement.classList.add('btn-primary');
-    footerElement.appendChild(buttonElement);
+    const okButtonElement = document.createElement('button');
+    okButtonElement.id = PROMPT_BUTTON_OK_ID;
+    okButtonElement.setAttribute('type', 'button');
+    okButtonElement.classList.add('btn');
+    okButtonElement.classList.add('btn-primary');
+    okButtonElement.classList.add('tag-ok');
+    footerElement.appendChild(okButtonElement);
+
+    const cancelButtonElement = document.createElement('button');
+    cancelButtonElement.id = PROMPT_BUTTON_CANCEL_ID;
+    cancelButtonElement.setAttribute('type', 'button');
+    cancelButtonElement.classList.add('btn');
+    cancelButtonElement.classList.add('btn-outline-secondary');
+    cancelButtonElement.classList.add('tag-cancel');
+    footerElement.appendChild(cancelButtonElement);
+
     contentElement.appendChild(footerElement);
 
     dialogElement.appendChild(contentElement);
@@ -193,73 +209,95 @@ export default class VeloBootstrapDialogs {
      * @param {string} messageHTML Message (HTML) in the prompt
      * @param {string|null} titleHTML Title (HTML) of the prompt
      * @param {string} type Type of the prompt
+     * @param {object} options Options
      * @param {callable} onDismiss Function to be executed on dismiss
      * @return Promise<HTMLElement>
      * @private
      */
-    async _showPrompt(messageHTML, titleHTML, type, onDismiss)
+    async _showPrompt(messageHTML, titleHTML, type, options, onDismiss)
     {
         const _messageHTML = Xw.$.requires(messageHTML);
         const _titleHTML = Xw.$.requires(titleHTML);
         const _type = Xw.$.requires(type);
+        const _options = Xw.$.defaultable(options, {});
         const _onDismiss = Xw.$.requires(onDismiss);
 
         const target = createPromptDialog();
 
         const headerElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-header');
         const titleElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-header > h5.modal-title');
-        if (titleHTML) {
-            titleElement.innerHTML = titleHTML;
+        if (_titleHTML) {
+            titleElement.innerHTML = _titleHTML;
             Xw.doms.show(headerElement);
         } else {
             Xw.doms.hide(headerElement);
         }
 
         const bodyElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-body');
-        bodyElement.innerHTML = messageHTML;
+        bodyElement.innerHTML = _messageHTML;
 
-        const buttonElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-footer > button.btn');
-        buttonElement.innerHTML = _l('Ok');
+        const okButtonElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-footer > button.tag-ok');
+        okButtonElement.innerHTML = _l('Ok');
 
-        const _localDismiss = () => {
-            buttonElement.removeEventListener('click', closeFunction);
-            _onDismiss();
+        const cancelButtonElement = target.querySelector('div.modal-dialog > div.modal-content > div.modal-footer > button.tag-cancel');
+        cancelButtonElement.innerHTML = _l('Cancel');
+
+        const _localDismiss = (ret) => {
+            okButtonElement.removeEventListener('click', okCloseFunction);
+            cancelButtonElement.removeEventListener('click', cancelCloseFunction);
+            _onDismiss(ret);
         };
 
-        const closeFunction = async (ev) => {
+        const okCloseFunction = async (ev) => {
             ev.stopImmediatePropagation();
             await this.hideModal(target);
-            _localDismiss();
+            _localDismiss(true);
         };
 
-        buttonElement.classList.remove('btn-success');
-        buttonElement.classList.remove('btn-danger');
-        buttonElement.classList.remove('btn-warning');
-        buttonElement.classList.remove('btn-primary');
+        const cancelCloseFunction = async (ev) => {
+            ev.stopImmediatePropagation();
+            await this.hideModal(target);
+            _localDismiss(false);
+        };
 
-        switch (type) {
+        okButtonElement.classList.remove('btn-success');
+        okButtonElement.classList.remove('btn-danger');
+        okButtonElement.classList.remove('btn-warning');
+        okButtonElement.classList.remove('btn-primary');
+
+        switch (_type) {
             case 'success':
-                buttonElement.classList.add('btn-success');
+                okButtonElement.classList.add('btn-success');
                 break;
             case 'error':
             case 'danger':
-                buttonElement.classList.add('btn-danger');
+                okButtonElement.classList.add('btn-danger');
                 break;
             case 'warn':
             case 'warning':
-                buttonElement.classList.add('btn-warning');
+                okButtonElement.classList.add('btn-warning');
                 break;
             default:
-                buttonElement.classList.add('btn-primary');
+                okButtonElement.classList.add('btn-primary');
                 break;
         }
 
-        buttonElement.addEventListener('click', closeFunction);
+        okButtonElement.addEventListener('click', okCloseFunction);
+        cancelButtonElement.addEventListener('click', cancelCloseFunction);
+
+        const _optionsHasCancel = Xw.$.defaultable(_options.hasCancel, false);
+        if (_optionsHasCancel) {
+            Xw.doms.show(cancelButtonElement);
+        } else {
+            Xw.doms.hide(cancelButtonElement);
+        }
 
         await this.showModal(target, {
-            onDismiss: _localDismiss,
+            onDismiss: () => {
+                _localDismiss(false);
+            },
         });
-        buttonElement.focus();
+        okButtonElement.focus();
 
         return target;
     }
@@ -270,16 +308,43 @@ export default class VeloBootstrapDialogs {
      * @param {string} messageHTML Message (HTML) in the prompt
      * @param {string} [titleHTML] Title (HTML) of the prompt
      * @param {string} [type=info] Type of the prompt
+     * @param {object} [options] Optional options
      * @return {Promise<void>}
      */
-    async prompt(messageHTML, titleHTML, type) {
+    async prompt(messageHTML, titleHTML, type, options) {
 
         const _messageHTML = Xw.$.requires(messageHTML);
         const _titleHTML = Xw.$.defaultable(titleHTML);
         const _type = Xw.$.defaultable(type, 'info');
+        const _options = Xw.$.defaultable(options, {});
+
+        _options.hasCancel = false;
 
         return new Promise((resolve, reject) => {
-            this._showPrompt(_messageHTML, _titleHTML, _type, resolve);
+            this._showPrompt(_messageHTML, _titleHTML, _type, _options, resolve);
         });
+    }
+
+
+    /**
+     * Show a confirmation prompt (equivalent to query)
+     * @param {string} messageHTML Message (HTML) in the prompt
+     * @param {string} [titleHTML] Title (HTML) of the prompt
+     * @param {string} [type=info] Type of the prompt
+     * @param {object} [options] Optional options
+     * @return {Promise<boolean>}
+     */
+    async confirm(messageHTML, titleHTML, type, options) {
+
+        const _messageHTML = Xw.$.requires(messageHTML);
+        const _titleHTML = Xw.$.defaultable(titleHTML);
+        const _type = Xw.$.defaultable(type, 'info');
+        const _options = Xw.$.defaultable(options, {});
+
+        _options.hasCancel = true;
+
+        return new Promise((resolve, reject) => {
+            this._showPrompt(_messageHTML, _titleHTML, _type, _options, resolve);
+        })
     }
 }
