@@ -59,7 +59,7 @@ class PaginatorItemComponentRenderer implements ComponentRenderer
 
         $linkAttributes = [
             'class' => 'page-link',
-            'href' => '#',
+            'href' => 'javascript:void(0);',
         ];
 
         if ($attrDisabled) {

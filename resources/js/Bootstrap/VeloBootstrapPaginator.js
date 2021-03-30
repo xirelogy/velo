@@ -22,6 +22,7 @@ function decodeElement(liElement, flags) {
         case 'prev':
         case 'more':
         case 'next':
+            flags.kind = liElement.dataset['kind'];
             return null;
     }
 
@@ -40,7 +41,7 @@ function decodeElement(liElement, flags) {
  * Create page element
  * @param {number} thisPage
  * @param {number} activePage
- * @param {function():void} fn
+ * @param {function(HTMLElement, number, Event):void} fn
  * @return {HTMLElement}
  */
 function createPageElement(thisPage, activePage, fn) {
@@ -50,7 +51,7 @@ function createPageElement(thisPage, activePage, fn) {
 
     const aElement = document.createElement('a');
     aElement.classList.add(CLASSNAME_TYPE_A);
-    aElement.setAttribute('href', '#');
+    aElement.setAttribute('href', 'javascript:void(0);');
 
     aElement.innerText = thisPage.toString();
     aElement.addEventListener('click', (ev) => {
@@ -74,7 +75,7 @@ function createMoreElement() {
 
     const aElement = document.createElement('a');
     aElement.classList.add(CLASSNAME_TYPE_A);
-    aElement.setAttribute('href', '#');
+    aElement.setAttribute('href', 'javascript:void(0);');
     aElement.setAttribute('tabindex', '-1');
 
     aElement.innerText = '...';
@@ -103,11 +104,17 @@ export default class VeloBootstrapPaginator {
         let activePage = null;
         let minPage = null;
         let maxPage = null;
+        let prevElement = null;
+        let nextElement = null;
 
         for (const liElement of ulElement.children) {
             const flags = {};
             const thisPage = decodeElement(liElement, flags);
-            if (thisPage === null) continue;
+            if (thisPage === null) {
+                if ((flags.kind || null) === 'prev') prevElement = liElement;
+                if ((flags.kind || null) === 'next') nextElement = liElement;
+                continue;
+            }
 
             if (Xw.$.isDefined(flags.isActive)) activePage = thisPage;
             if (minPage === null || thisPage < minPage) minPage = thisPage;
@@ -120,6 +127,24 @@ export default class VeloBootstrapPaginator {
         this._maxDisplayPages = Xw.$.defaultable(_options.maxDisplayPages, 7);
         if (this._maxDisplayPages < 5) this._maxDisplayPages = 5;
         this._onSelect = new Xw.EventListeners();
+
+        const onSelectPrevNext = (element, kind, page, ev) => {
+            const newEv = new CustomEvent('select');
+            newEv.pageElement = element;
+            newEv.kind = kind;
+            newEv.page = page;
+            newEv.parentEvent = ev;
+            this._onSelect.dispatch(newEv);
+        }
+
+        if (prevElement !== null) prevElement.addEventListener('click', (ev) => {
+            if (this._activePage <= 1) return;
+            this._onRaiseSelect(prevElement, this._activePage - 1, ev, 'prev');
+        });
+        if (nextElement !== null) nextElement.addEventListener('click', (ev) => {
+            if (this._activePage >= this._maxPage) return;
+            this._onRaiseSelect(nextElement, this._activePage + 1, ev, 'next');
+        });
     }
 
 
@@ -158,6 +183,41 @@ export default class VeloBootstrapPaginator {
     setTotalPages(value) {
         this._maxPage = value;
         this._repopulate();
+    }
+
+
+    /**
+     * Raise the select event
+     * @param {HTMLElement} element Element that causes the select event
+     * @param {number} page Page number to be selected
+     * @param {Event} ev Parent event
+     * @param {string} [kind] Event kind
+     * @private
+     */
+    _onRaiseSelect(element, page, ev, kind) {
+
+        // Update the display
+        for (const liElement of this._ulElement.children) {
+            const flags = {};
+            const thisPage = decodeElement(liElement, flags);
+            liElement.classList.add(CLASSNAME_DISABLED);
+            liElement.classList.remove(CLASSNAME_ACTIVE);
+
+            if (thisPage === page) {
+                liElement.classList.add(CLASSNAME_ACTIVE);
+                liElement.classList.remove(CLASSNAME_DISABLED);
+            }
+        }
+
+        // Create the new event and attach custom attributes
+        const newEv = new CustomEvent('select');
+        newEv.pageElement = element;
+        newEv.page = page;
+        newEv.parentEvent = ev;
+        if (Xw.$.isDefined(kind)) newEv.kind = kind;
+
+        // Raise the new event
+        this._onSelect.dispatch(newEv);
     }
 
 
@@ -201,11 +261,7 @@ export default class VeloBootstrapPaginator {
 
         // Handle function
         const pageFn = (element, page, ev) => {
-            const newEv = new CustomEvent('select');
-            newEv.pageElement = element;
-            newEv.page = page;
-            newEv.parentEvent = ev;
-            this._onSelect.dispatch(newEv);
+            this._onRaiseSelect(element, page, ev);
         };
 
         if (this._maxPage > this._maxDisplayPages) {
