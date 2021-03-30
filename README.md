@@ -95,6 +95,8 @@ time of writing).
 - Use the attribute `x-close-button` (without value) to indicate a close button is required.
 - Use the attribute `x-vertical-align` (without value) to align the dialog vertically.
 - Use the attribute `x-scroll-content` (without value) to indicate that the content of the dialog can scroll if exceeds frame size.
+- Use the attribute `x-header-class` to specify additional classes for the dialog header.
+- Use the attribute `x-footer-class` to specify additional classes for the dialog footer.
 
 ##### Form group (`x-velo::container.form-group`)
 

@@ -16,6 +16,12 @@ class DialogComponentRenderer implements ComponentRenderer
     {
         $contents = [];
 
+        $headerClasses = $context->getExtractedAttribute('x-header-class', '');
+        $footerClasses = $context->getExtractedAttribute('x-footer-class', '');
+
+        $headerClasses = explode(' ', $headerClasses);
+        $footerClasses = explode(' ', $footerClasses);
+
         $slotTitle = $context->getSlot('title');
         if (!is_null($slotTitle)) {
             $titleContents = [];
@@ -28,8 +34,13 @@ class DialogComponentRenderer implements ComponentRenderer
                 $titleContents[] = Helper::createCloseButton('modal');
             }
 
+            $finalHeaderClasses = ['modal-header'];
+            foreach ($headerClasses as $headerClass) {
+                $finalFooterClasses[] = $headerClass;
+            }
+
             $contents[] = new ElementDefinition('div', [
-                'class' => 'modal-header',
+                'class' => implode(' ', $finalHeaderClasses),
             ], $titleContents);
         }
 
@@ -40,8 +51,13 @@ class DialogComponentRenderer implements ComponentRenderer
 
         $slotFooter = $context->getSlot('footer');
         if (!is_null($slotFooter)) {
+            $finalFooterClasses = ['modal-footer'];
+            foreach ($footerClasses as $footerClass) {
+                $finalFooterClasses[] = $footerClass;
+            }
+
             $contents[] = new ElementDefinition('div', [
-                'class' => 'modal-footer',
+                'class' => implode(' ', $finalFooterClasses),
             ], $slotFooter);
         }
 
