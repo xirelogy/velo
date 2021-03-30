@@ -196,7 +196,7 @@ time of writing).
 - A thumbnail element for an image
 - Use the attribute `data-src` to specify the image source.
 
-##### Toast (`x-velo:container.toast`)
+##### Toast (`x-velo::container.toast`)
 
 - A toast is a frame for showing toast notification message (eg. Bootstrap's Toast component).
 - Toast title can be specified in the `title` slot.
