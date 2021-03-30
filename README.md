@@ -62,7 +62,9 @@ time of writing).
 ##### Card (`x-velo::container.card`)
 
 - A card frame with possible title (eg. Bootstrap's Card component).
+- Card header can be specified in the `header` slot.
 - Card title can be specified in the `title` slot.
+- Card footer can be specified in the `footer` slot.
 
 ##### Check box (`x-velo::control.check-box`)
 
