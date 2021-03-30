@@ -27,6 +27,22 @@
   white-space: nowrap;
 }
 
+.velo-toast-queue {
+  position: absolute;
+  pointer-events: none;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+}
+
+.velo-toast-item {
+  margin-top: 1rem;
+  margin-left: 1rem;
+  margin-right: 1rem;
+}
+
 .velo-thumbnail {
   width: 30vw;
   max-width: 200px;

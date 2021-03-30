@@ -6,6 +6,7 @@ import VeloBootstrapForms from './VeloBootstrapForms';
 import VeloBootstrapPaginator from './VeloBootstrapPaginator';
 import VeloBootstrapPopMenus from './VeloBootstrapPopMenus';
 import VeloBootstrapTabs from './VeloBootstrapTabs';
+import VeloBootstrapToasts from './VeloBootstrapToasts';
 
 
 /**
@@ -33,6 +34,9 @@ export default function boot() {
         });
         velo.registerProvider(libraryName, 'VeloTabs', (args) => {
             return new VeloBootstrapTabs(args);
+        });
+        velo.registerProvider(libraryName, 'VeloToasts', () => {
+            return new VeloBootstrapToasts();
         });
     });
 }
