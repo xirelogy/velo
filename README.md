@@ -123,6 +123,7 @@ time of writing).
     <x-velo::container.input-group-suffix>@example.com</x-velo::container.input-group-suffix>
   </x-velo::container.input-group>
   ```
+- The input prefix/suffix may specify the attribute `x-target` to specify the target type contained (Currently `button` supported).
 
 ##### Loading (`x-velo::loading`)
 

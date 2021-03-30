@@ -35,6 +35,17 @@ class InputGroupStaticComponentRenderer implements ComponentRenderer
         $context->addClass($this->className);
         $context->exportSlot($contents);
 
+        $attrTarget = $context->getExtractedAttribute('x-target');
+
+        if (!is_null($attrTarget)) {
+            switch ($attrTarget) {
+                case 'button':
+                    return new ElementDefinition('div', $context->finalizeAttributes(), $contents);
+                default:
+                    break;
+            }
+        }
+
         return new ElementDefinition('div', $context->finalizeAttributes(), [
             new ElementDefinition('span', ['class' => 'input-group-text'], $contents),
         ]);
