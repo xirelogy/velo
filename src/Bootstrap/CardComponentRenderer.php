@@ -25,6 +25,11 @@ class CardComponentRenderer implements ComponentRenderer
         $bodyClasses = new ClassNames(['card-body']);
         $footerClasses = new ClassNames(['card-footer']);
 
+        self::mergeCustomClasses($headerClasses, $context->getExtractedAttribute('x-header-class'));
+        self::mergeCustomClasses($titleClasses, $context->getExtractedAttribute('x-title-class'));
+        self::mergeCustomClasses($bodyClasses, $context->getExtractedAttribute('x-body-class'));
+        self::mergeCustomClasses($footerClasses, $context->getExtractedAttribute('x-footer-class'));
+
         // Check for header
         $slotHeader = $context->getSlot('header');
         if (!is_null($slotHeader)) {
@@ -48,5 +53,21 @@ class CardComponentRenderer implements ComponentRenderer
         }
 
         return new ElementDefinition('div', $context->finalizeAttributes(), $outContents);
+    }
+
+
+    /**
+     * Merge custom classes
+     * @param ClassNames $classes
+     * @param string|null $source
+     */
+    private static function mergeCustomClasses(ClassNames $classes, ?string $source) : void
+    {
+        if (is_null($source)) return;
+
+        $explodeClasses = explode(' ', $source);
+        foreach ($explodeClasses as $explodeClass) {
+            $classes->add($explodeClass);
+        }
     }
 }
