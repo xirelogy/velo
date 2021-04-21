@@ -65,6 +65,10 @@ time of writing).
 - Card header can be specified in the `header` slot.
 - Card title can be specified in the `title` slot.
 - Card footer can be specified in the `footer` slot.
+- Use the attribue `x-header-class` for specifying additional classes for the card header.
+- Use the attribue `x-title-class` for specifying additional classes for the card title.
+- Use the attribue `x-body-class` for specifying additional classes for the body.
+- Use the attribue `x-footer-class` for specifying additional classes for the card footer.
 
 ##### Check box (`x-velo::control.check-box`)
 
