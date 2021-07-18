@@ -26,7 +26,7 @@ class InputGroupStaticComponentRenderer implements ComponentRenderer
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function render(RenderContext $context)
     {

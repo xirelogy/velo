@@ -8,7 +8,7 @@ use Xirelogy\Velo\View\RenderContext;
 class DataValue extends Component
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function onRender(RenderContext $context)
     {

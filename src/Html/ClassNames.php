@@ -48,7 +48,7 @@ class ClassNames implements Renderable
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function render() : string
     {

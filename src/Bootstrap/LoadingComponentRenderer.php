@@ -9,7 +9,7 @@ use Xirelogy\Velo\View\RenderContext;
 class LoadingComponentRenderer implements ComponentRenderer
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function render(RenderContext $context)
     {

@@ -9,7 +9,7 @@ use Xirelogy\Velo\View\RenderContext;
 class TabBarComponentRenderer implements ComponentRenderer
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function render(RenderContext $context)
     {

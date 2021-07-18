@@ -8,7 +8,7 @@ use Xirelogy\Velo\View\RenderContext;
 class InputGroupPrefix extends Component
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function onRender(RenderContext $context)
     {

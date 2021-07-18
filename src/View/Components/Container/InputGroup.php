@@ -9,7 +9,7 @@ use Xirelogy\Velo\View\RenderContext;
 class InputGroup extends Component
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function onRender(RenderContext $context)
     {

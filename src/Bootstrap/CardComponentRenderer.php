@@ -10,7 +10,7 @@ use Xirelogy\Velo\View\RenderContext;
 class CardComponentRenderer implements ComponentRenderer
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function render(RenderContext $context)
     {

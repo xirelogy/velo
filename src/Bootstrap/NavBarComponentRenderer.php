@@ -9,7 +9,7 @@ use Xirelogy\Velo\View\RenderContext;
 class NavBarComponentRenderer implements ComponentRenderer
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function render(RenderContext $context)
     {

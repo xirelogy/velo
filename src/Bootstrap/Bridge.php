@@ -36,8 +36,7 @@ use Xirelogy\Velo\View\Components\Thumbnail;
 class Bridge extends BaseBridge
 {
     /**
-     * Get the Javascript definition name
-     * @return string
+     * @inheritDoc
      */
     protected function getJsName() : string
     {
@@ -66,7 +65,7 @@ class Bridge extends BaseBridge
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getExtraClasses(string $className) : array
     {

@@ -9,7 +9,7 @@ use Xirelogy\Velo\View\RenderContext;
 class PaginatorComponentRenderer implements ComponentRenderer
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function render(RenderContext $context)
     {

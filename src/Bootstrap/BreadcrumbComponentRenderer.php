@@ -9,7 +9,7 @@ use Xirelogy\Velo\View\RenderContext;
 class BreadcrumbComponentRenderer implements ComponentRenderer
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function render(RenderContext $context)
     {

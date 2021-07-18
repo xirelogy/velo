@@ -114,7 +114,7 @@ class ServiceProvider extends BaseServiceProvider
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function loadViewComponentsAs($prefix, array $components)
     {

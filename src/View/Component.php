@@ -14,7 +14,7 @@ use Xirelogy\Velo\Utils\Strings;
 abstract class Component extends BaseComponent
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function render()
     {
@@ -71,7 +71,7 @@ abstract class Component extends BaseComponent
 
 
                 /**
-                 * @inheritdoc
+                 * @inheritDoc
                  */
                 protected function hasAttribute(string $key, bool $isNormal) : bool
                 {
@@ -84,7 +84,7 @@ abstract class Component extends BaseComponent
 
 
                 /**
-                 * @inheritdoc
+                 * @inheritDoc
                  */
                 protected function getAttribute(string $key, bool $isNormal)
                 {
@@ -99,7 +99,7 @@ abstract class Component extends BaseComponent
 
 
                 /**
-                 * @inheritdoc
+                 * @inheritDoc
                  */
                 public function getSlot(?string $name = null, $default = null)
                 {
@@ -111,7 +111,7 @@ abstract class Component extends BaseComponent
 
 
                 /**
-                 * @inheritdoc
+                 * @inheritDoc
                  */
                 public function addAttribute(string $key, string $value) : void
                 {
@@ -120,7 +120,7 @@ abstract class Component extends BaseComponent
 
 
                 /**
-                 * @inheritdoc
+                 * @inheritDoc
                  */
                 public function addClass(?string $className) : void
                 {
@@ -129,7 +129,7 @@ abstract class Component extends BaseComponent
 
 
                 /**
-                 * @inheritdoc
+                 * @inheritDoc
                  */
                 public function finalizeAttributes() : array
                 {
@@ -152,7 +152,7 @@ abstract class Component extends BaseComponent
 
 
                 /**
-                 * @inheritdoc
+                 * @inheritDoc
                  */
                 public function simpleWrap(?string $tag, array $addClassNames = [])
                 {
@@ -248,6 +248,7 @@ abstract class Component extends BaseComponent
      * Render the current component
      * @param RenderContext $context Context of the rendering
      * @return ElementDefinition|string|null Rendering result
+     * @throws Exception
      */
     protected abstract function onRender(RenderContext $context);
 }

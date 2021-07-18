@@ -66,9 +66,9 @@ class ElementDefinition implements Renderable
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
-    public function render(): string
+    public function render() : string
     {
         if ($this->isSingle) {
             // HTML tag without closing

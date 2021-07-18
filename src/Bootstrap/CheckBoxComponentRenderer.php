@@ -5,7 +5,7 @@ namespace Xirelogy\Velo\Bootstrap;
 class CheckBoxComponentRenderer extends CheckAndRadioComponentRenderer
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getInputType() : string
     {

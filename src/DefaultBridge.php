@@ -7,7 +7,7 @@ use Xirelogy\Velo\View\ComponentRenderer;
 class DefaultBridge extends Bridge
 {
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     protected function getStyles() : iterable
     {
@@ -16,7 +16,7 @@ class DefaultBridge extends Bridge
 
 
     /**
-     * @inheritdoc
+     * @inheritDoc
      */
     public function getComponentRenderer(string $className) : ?ComponentRenderer
     {
