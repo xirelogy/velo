@@ -43,6 +43,7 @@ export default class VeloScrollForMore {
         this._onStartBusy = Xw.$.defaultable(_options.onStartBusy);
         this._onEndBusy = Xw.$.defaultable(_options.onEndBusy);
         this._onNoMore = Xw.$.defaultable(_options.onNoMore);
+        this._onClear = Xw.$.defaultable(_options.onClear);
         this._split = Xw.$.defaultable(_options.split, DEFAULT_SPLIT);
 
         const _persist = Xw.$.defaultable(_options.persist);
@@ -83,6 +84,9 @@ export default class VeloScrollForMore {
      */
     async reload() {
         this._isFinal = false;
+        this._totalItems = 0;
+        if (this._onClear !== null) this._onClear();
+
         if (this._persist) {
             this._persist.delete(this._persistScroll);
             this._persist.delete(this._persistCount);
