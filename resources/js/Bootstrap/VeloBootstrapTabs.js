@@ -26,6 +26,15 @@ export default class VeloBootstrapTabs {
 
 
     /**
+     * If key is supported
+     * @return {boolean}
+     */
+    hasKey() {
+        return this._keyFn !== null;
+    }
+
+
+    /**
      * Get the active element
      * @return {HTMLElement|null} Active element if found
      */
