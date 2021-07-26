@@ -88,6 +88,7 @@ export default class VeloTabs {
         // Create descriptor
         const desc = {};
         desc.element = Xw.$.defaultable(_target.element, null);
+        desc.onFocus = Xw.$.defaultable(_target.onFocus, null);
 
         // Check that either one is satisfied
         if (_sourceKey !== null) {
@@ -145,6 +146,8 @@ export default class VeloTabs {
             }
         }
         Xw.doms.show(desc.element, this._contentDisplayType);
+
+        if (desc.onFocus) desc.onFocus();
     }
 
 
