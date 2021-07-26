@@ -116,11 +116,11 @@ time of writing).
 - A full page occupies the full width and height of the page, without any margin or padding, and does not support scrolling.
 - The purpose of full page is to lock the contents of a 'page' within it's content without causing undesired scrolling or side effects.
 
-##### Input (`x-velo::container:input`)
+##### Input (`x-velo::container.input`)
 
 - An input corresponds to the various input as in HTML.
 
-##### Input group (`x-velo::container:input-group`)
+##### Input group (`x-velo::container.input-group`)
 
 - An input group is a input with possible prefix/suffix static content (eg. Bootstrap's Input group component).
 - Example:
