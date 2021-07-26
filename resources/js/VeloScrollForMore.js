@@ -42,6 +42,7 @@ export default class VeloScrollForMore {
         this._onItem = Xw.$.requires(_options.onItem);
         this._onStartBusy = Xw.$.defaultable(_options.onStartBusy);
         this._onEndBusy = Xw.$.defaultable(_options.onEndBusy);
+        this._onLoadError = Xw.$.defaultable(_options.onLoadError);
         this._onNoMore = Xw.$.defaultable(_options.onNoMore);
         this._onClear = Xw.$.defaultable(_options.onClear);
         this._split = Xw.$.defaultable(_options.split, DEFAULT_SPLIT);
@@ -177,6 +178,8 @@ export default class VeloScrollForMore {
 
         try {
             await this._onLoad(context);
+        } catch (e) {
+            if (this._onLoadError !== null) this._onLoadError(e);
         } finally {
             busyFinal.final();
         }
