@@ -57,7 +57,7 @@ export default class VeloBootstrapPopMenus {
      * @param {string} [options.anchor] Anchor of the menu in relative to the element
      */
     bindTrigger(trigger, menu, options) {
-        
+
         const _trigger = Xw.$.requires(trigger);
         const _menu = Xw.$.requires(menu);
         const _options = Xw.$.defaultable(options);
@@ -94,5 +94,25 @@ export default class VeloBootstrapPopMenus {
                 await _optionsOnAsyncHide(_menu);
             }
         });
+
+        return {
+            showMenu: async (ev) => {
+                if (!Xw.doms.isShown(_menu)) {
+                    await _optionsOnAsyncShow(_menu);
+                }
+            },
+            dismissMenu: async (ev) => {
+                if (Xw.doms.isShown(_menu)) {
+                    await _optionsOnAsyncHide(_menu);
+                }
+            },
+            toggleMenu: async (ev) => {
+                if (!Xw.doms.isShown(_menu)) {
+                    await _optionsOnAsyncShow(_menu);
+                } else {
+                    await _optionsOnAsyncHide(_menu);
+                }
+            },
+        };
     }
 }

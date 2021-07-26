@@ -21,7 +21,9 @@ export default class VeloPopMenus {
      */
     bindTrigger(trigger, menu, options) {
         if (this._inst) {
-            this._inst.bindTrigger(trigger, menu, options);
+            return this._inst.bindTrigger(trigger, menu, options);
         }
+
+        throw Xw.InvalidStateError();
     }
 }
