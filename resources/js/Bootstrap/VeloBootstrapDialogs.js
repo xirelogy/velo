@@ -1,15 +1,10 @@
 import Xw from '@xirelogy/xw';
 import veloBootstrapCommon from './VeloBootstrapCommon';
 import veloPageMask from '../VeloPageMask';
+import VeloBootstrapDialogSession from './VeloBootstrapDialogSession';
 
 const _l = Xw.i18n.init('VeloBootstrapDialogs');
 
-
-/**
- * ID of the mask
- * @type {string}
- */
-const MASK_ID = 'velo-bootstrap-modal-mask';
 
 /**
  * ID of the prompt
@@ -31,11 +26,11 @@ const PROMPT_BUTTON_CANCEL_ID = 'velo-bootstrap-prompt-cancel-button';
 
 
 /**
- * Listeners for dialog events
- * @type {Map<HTMLElement, function(Event)>}
+ * Dialog sessions
+ * @type {Map<HTMLElement, VeloBootstrapDialogSession>}
  * @private
  */
-const _dialogListeners = new Map();
+const _sessions = new Map();
 
 
 /**
@@ -111,51 +106,19 @@ export default class VeloBootstrapDialogs {
      */
     async showModal(target, options) {
 
+        const _target = Xw.$.requires(target);
         const _options = Xw.$.defaultable(options, {});
-        const _showMs = Xw.$.defaultable(_options.showMs, 300);
-        const _onDismiss = Xw.$.defaultable(_options.onDismiss);
+        const _onDismiss = Xw.$.defaultable(_options.onDismiss, null);
 
-        const mask = veloPageMask.create(MASK_ID);
-        document.body.appendChild(target);
-
-        const showArgs = {};
-        if (_showMs !== null) showArgs.durationMs = _showMs;
-
-        await Xw.axw.waitAll([
-            mask.show(),
-            veloBootstrapCommon.animateFadeIn(target, showArgs),
-        ]);
-
-        const outerListener = async (ev) => {
-            ev.stopImmediatePropagation();
-            await this.hideModal(target);
-            if (_onDismiss) _onDismiss();
-        };
-        target.addEventListener('click', outerListener);
-        _dialogListeners.set(target, outerListener);
-
-        const contentListener = (ev) => {
-            ev.stopImmediatePropagation();
-        };
-
-        const closeListener = async (ev) => {
-            ev.stopImmediatePropagation();
-            await this.hideModal(target);
+        const _localDismiss = () => {
+            _sessions.delete(target);
             if (_onDismiss) _onDismiss();
         };
 
-        const targetContents = target.getElementsByClassName('modal-content');
-        for (const targetContent of targetContents) {
-            targetContent.addEventListener('click', contentListener);
-            _dialogListeners.set(targetContent, contentListener);
-            break;
-        }
+        const session = new VeloBootstrapDialogSession(target, _localDismiss, options);
+        _sessions.set(target, session);
 
-        const closeButton = target.querySelector('button.close');
-        if (closeButton) {
-            closeButton.addEventListener('click', closeListener);
-            _dialogListeners.set(closeButton, closeListener);
-        }
+        await session.showModal();
     }
 
 
@@ -167,40 +130,10 @@ export default class VeloBootstrapDialogs {
      */
     async hideModal(target, options) {
 
-        const _options = Xw.$.defaultable(options, {});
-        const _hideMs = Xw.$.defaultable(_options.hideMs, 250);
+        if (!_sessions.has(target)) return;
 
-        const mask = veloPageMask.create(MASK_ID);
-
-        const hideArgs = {};
-        if (_hideMs !== null) hideArgs.durationMs = _hideMs;
-
-        await Xw.axw.waitAll([
-            veloBootstrapCommon.animateFadeOut(target, hideArgs),
-            mask.hide(),
-        ]);
-
-        if (_dialogListeners.has(target)) {
-            target.removeEventListener('click', _dialogListeners.get(target));
-            _dialogListeners.delete(target);
-        }
-
-        const targetContents = target.getElementsByClassName('modal-content');
-        for (const targetContent of targetContents) {
-            if (_dialogListeners.has(targetContent)) {
-                target.removeEventListener('click', _dialogListeners.get(targetContent));
-                _dialogListeners.delete(targetContent);
-            }
-            break;
-        }
-
-        const closeButton = target.querySelector('button.close');
-        if (closeButton) {
-            if (_dialogListeners.has(closeButton)) {
-                target.removeEventListener('click', _dialogListeners.get(closeButton));
-                _dialogListeners.delete(closeButton);
-            }
-        }
+        const session = _sessions.get(target);
+        await session.hideModal(options);
     }
 
 
