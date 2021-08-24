@@ -29,7 +29,7 @@ class VeloPageMask_Static {
 
         // Ensure element is created
         let isCreated = false;
-        let _element = document.getElementById(id);
+        let _element = document.getElementById(_id);
         if (_element === null) {
             // Create mask element
             _element = document.createElement('div');
