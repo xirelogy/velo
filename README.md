@@ -116,7 +116,7 @@ time of writing).
 - A full page occupies the full width and height of the page, without any margin or padding, and does not support scrolling.
 - The purpose of full page is to lock the contents of a 'page' within it's content without causing undesired scrolling or side effects.
 
-##### Input (`x-velo::container.input`)
+##### Input (`x-velo::control.input`)
 
 - An input corresponds to the various input as in HTML.
 
