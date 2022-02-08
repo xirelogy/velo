@@ -133,6 +133,11 @@ time of writing).
   ```
 - The input prefix/suffix may specify the attribute `x-target` to specify the target type contained (Currently `button` supported).
 
+##### Tags input (`x-velo::control.input-tags`)
+
+- A specialized input for editing tags separated by separators.
+- The separator is comma (,) by default and can be specified using `data-separator`.
+
 ##### Loading (`x-velo::loading`)
 
 - Loading shows an indicator that loading is in progress.

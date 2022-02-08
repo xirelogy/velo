@@ -22,6 +22,7 @@ use Xirelogy\Velo\View\Components\Container\Toast;
 use Xirelogy\Velo\View\Components\Control\Button;
 use Xirelogy\Velo\View\Components\Control\CheckBox;
 use Xirelogy\Velo\View\Components\Control\Input;
+use Xirelogy\Velo\View\Components\Control\InputTags;
 use Xirelogy\Velo\View\Components\Control\Radio;
 use Xirelogy\Velo\View\Components\Control\Select;
 use Xirelogy\Velo\View\Components\Control\TabBar;
@@ -113,6 +114,8 @@ class Bridge extends BaseBridge
                 return new InputGroupStaticComponentRenderer('input-group-prepend');
             case InputGroupSuffix::class:
                 return new InputGroupStaticComponentRenderer('input-group-append');
+            case InputTags::class:
+                return new InputTagsComponentRenderer();
             case Loading::class:
                 return new LoadingComponentRenderer();
             case NavBar::class:

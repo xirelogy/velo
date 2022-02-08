@@ -3,10 +3,79 @@ import velo from '../Velo';
 import VeloBootstrapButtons from './VeloBootstrapButtons';
 import VeloBootstrapDialogs from './VeloBootstrapDialogs';
 import VeloBootstrapForms from './VeloBootstrapForms';
+import VeloBootstrapInputTags from './VeloBootstrapInputTags';
 import VeloBootstrapPaginator from './VeloBootstrapPaginator';
 import VeloBootstrapPopMenus from './VeloBootstrapPopMenus';
 import VeloBootstrapTabs from './VeloBootstrapTabs';
 import VeloBootstrapToasts from './VeloBootstrapToasts';
+
+
+/**
+ * Find CSS rule matching specific selector
+ * @param {string} selector
+ * @return {CSSRule|null}
+ */
+function selectCssRule(selector) {
+    for (const styleSheet of document.styleSheets) {
+        for (const cssRule of styleSheet.cssRules) {
+            if (cssRule.selectorText == selector) return cssRule;
+        }
+    }
+    return null;
+}
+
+
+/**
+ * Extract CSS rule from given text
+ * @param {CSSRule} rule
+ * @return {string}
+ */
+function extractCssText(rule) {
+    const cssText = rule.cssText;
+    const bracePos = cssText.indexOf('{');
+    if (bracePos >= 0) {
+        return cssText.substring(bracePos);
+    } else {
+        return '';
+    }
+}
+
+
+/**
+ * Insert a CSS rule text
+ * @param {string} selector
+ * @param {string} ruleText
+ */
+function insertCssRule(selector, ruleText) {
+    if (Xw.strings.isEmpty(ruleText)) return;
+
+    const fullRuleText = `${selector} ${ruleText}`;
+    Xw.$.insertCustomCss(selector, fullRuleText);
+}
+
+
+/**
+ * Prepare dynamic styles by copying from existing style sheets
+ */
+function prepareStyles() {
+    const formControlRule = selectCssRule('.form-control');
+    if (formControlRule && formControlRule instanceof CSSStyleRule) {
+        const outVeloInputTagsStyles = [];
+
+        const heightCss = formControlRule.style.getPropertyValue('height');
+        if (heightCss) outVeloInputTagsStyles.push(`min-height: ${heightCss};`);
+
+        if (outVeloInputTagsStyles.length > 0) {
+            insertCssRule('.velo-input-tags', `{ ${outVeloInputTagsStyles.join(' ')} }`)
+        }
+    }
+
+    const formControlFocusRule = selectCssRule('.form-control:focus');
+    if (formControlFocusRule) {
+        insertCssRule('.form-control-focus', extractCssText(formControlFocusRule));
+    }
+}
+
 
 
 /**
@@ -16,7 +85,9 @@ export default function boot() {
 
     Xw.appSetup.init('velo-bootstrap', [], () => {
         const libraryName = 'Xirelogy.Velo.Bootstrap';
-
+        
+        prepareStyles();
+        
         velo.registerProvider(libraryName, 'VeloButtons', () => {
             return new VeloBootstrapButtons();
         });
@@ -26,6 +97,9 @@ export default function boot() {
         velo.registerProvider(libraryName, 'VeloForms', () => {
             return new VeloBootstrapForms();
         });
+        velo.registerProvider(libraryName, 'VeloInputTags', (args) => {
+            return new VeloBootstrapInputTags(args);
+        })
         velo.registerProvider(libraryName, 'VeloPaginator', (args) => {
             return new VeloBootstrapPaginator(args);
         });

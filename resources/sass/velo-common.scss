@@ -47,3 +47,56 @@
   width: 30vw;
   max-width: 200px;
 }
+
+.velo-input-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: stretch;
+  width: 100%;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  height: initial;
+
+  .velo-input-tag {
+    flex: 0 0 auto;
+    margin-top: 0.25rem;
+    margin-bottom: 0.25rem;
+    margin-right: 0.125rem;
+    border-radius: 0.5rem;
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    font-size: 0.8rem;
+
+    .velo-input-tag-delete {
+      margin-left: 0.25rem;
+    }
+  }
+
+  .velo-input-tag:not(:first-child) {
+    margin-left: 0.125rem;
+  }
+
+  input {
+    outline: 0;
+    padding: 0;
+    border: 0;
+    flex: 1 1 auto;
+    background: transparent;
+    width: 1px;
+  }
+
+  input:not(:first-child) {
+    margin-left: 0.125rem;
+  }
+
+  input:focus {
+    outline: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+}
