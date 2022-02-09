@@ -2,7 +2,6 @@
 
 namespace Xirelogy\Velo\View;
 
-use phpDocumentor\Reflection\Element;
 use Xirelogy\Velo\Html\ElementDefinition;
 
 abstract class RenderContext
