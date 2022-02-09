@@ -5,8 +5,62 @@
   overflow-y: scroll;
 }
 
+.velo-scroll-x {
+  overflow-x: scroll;
+}
+
+.velo-scroll-y {
+  overflow-y: scroll;
+}
+
+.velo-flex-hor {
+  display: flex;
+  flex-direction: row;
+
+  > .velo-flex-spring {
+    width: 1px;
+  }
+}
+
+.velo-flex-ver {
+  display: flex;
+  flex-direction: column;
+
+  > .velo-flex-spring {
+    height: 1px;
+  }
+}
+
+.velo-flex-ver-contain {
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    flex-shrink: 1;
+    flex-grow: 1;
+    flex-basis: auto;
+    height: 1px;
+  }
+}
+
 .velo-flex-spring {
+  flex-shrink: 1;
   flex-grow: 1;
+  flex-basis: auto;
+}
+
+.velo-flex-fixed {
+  flex-shrink: 0;
+  flex-grow: 0;
+  flex-basis: auto;
+}
+
+.velo-pad-top {
+  margin-top: 1rem !important;
+}
+
+.velo-pad-bottom {
+  margin-bottom: 1rem !important;
 }
 
 .velo-rounded {
