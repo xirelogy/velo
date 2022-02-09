@@ -11,4 +11,13 @@ class RadioComponentRenderer extends CheckAndRadioComponentRenderer
     {
         return 'radio';
     }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function getCustomClass() : string
+    {
+        return 'custom-radio';
+    }
 }

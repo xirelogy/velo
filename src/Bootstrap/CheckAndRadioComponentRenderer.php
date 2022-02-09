@@ -13,19 +13,23 @@ abstract class CheckAndRadioComponentRenderer implements ComponentRenderer
      */
     public function render(RenderContext $context)
     {
+        $inputId = Helper::generateId();
+
+        $context->addAttribute('id', $inputId);
         $context->addAttribute('type', $this->getInputType());
-        $context->addClass('form-check-input');
+        $context->addClass('custom-control-input');
 
         $contents = [];
         $context->exportSlot($contents);
 
         $labelAttributes = [];
-        $labelAttributes['class'] = 'form-check-label';
+        $labelAttributes['class'] = 'custom-control-label';
+        $labelAttributes['for'] = $inputId;
 
         $attrId = $context->getNormalAttribute('id');
         if (!is_null($attrId)) $labelAttributes['for'] = $attrId;
 
-        return new ElementDefinition('div', ['class' => 'form-check'], [
+        return new ElementDefinition('div', ['class' => 'custom-control ' . $this->getCustomClass()], [
             (new ElementDefinition('input', $context->finalizeAttributes(), []))->single(),
             new ElementDefinition('label', $labelAttributes, $contents),
         ]);
@@ -37,4 +41,11 @@ abstract class CheckAndRadioComponentRenderer implements ComponentRenderer
      * @return string
      */
     protected abstract function getInputType() : string;
+
+
+    /**
+     * Get the custom class
+     * @return string
+     */
+    protected abstract function getCustomClass() : string;
 }

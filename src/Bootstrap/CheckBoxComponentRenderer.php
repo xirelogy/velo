@@ -11,4 +11,13 @@ class CheckBoxComponentRenderer extends CheckAndRadioComponentRenderer
     {
         return 'checkbox';
     }
+
+
+    /**
+     * @inheritDoc
+     */
+    protected function getCustomClass() : string
+    {
+        return 'custom-checkbox';
+    }
 }
