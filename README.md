@@ -8,7 +8,7 @@ time of writing).
 
 ### Using from composer
 
-- Usimg velo from composer:
+- Using velo from composer:
   ```
   composer require xirelogy/velo
   ```
