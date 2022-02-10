@@ -11,6 +11,28 @@ import VeloBootstrapToasts from './VeloBootstrapToasts';
 
 
 /**
+ * Apply patch to target object's prototype to ensure it is iterable
+ * @param {object} proto
+ */
+function patchIterator(proto) {
+    if (Xw.$.isDefined(proto[Symbol.iterator])) return;
+    proto[Symbol.iterator] = Array.prototype[Symbol.iterator];
+}
+
+
+/**
+ * Apply patch for debugging process
+ */
+function patchDebug() {
+    patchIterator(NodeList.prototype);
+    patchIterator(HTMLCollection.prototype);
+    patchIterator(DOMTokenList.prototype);
+    patchIterator(StyleSheetList.prototype);
+    patchIterator(CSSRuleList.prototype);
+}
+
+
+/**
  * Find CSS rule matching specific selector
  * @param {string} selector
  * @return {CSSRule|null}
@@ -77,15 +99,19 @@ function prepareStyles() {
 }
 
 
-
 /**
  * Boot-up functions
+ * @param {boolean} [isDebug=false] If debugging is enabled
  */
-export default function boot() {
+export default function boot(isDebug) {
+
+    const _isDebug = Xw.$.defaultable(isDebug, false);
 
     Xw.appSetup.init('velo-bootstrap', [], () => {
         const libraryName = 'Xirelogy.Velo.Bootstrap';
-        
+
+        if (_isDebug) patchDebug();
+
         prepareStyles();
         
         velo.registerProvider(libraryName, 'VeloButtons', () => {
