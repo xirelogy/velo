@@ -117,24 +117,22 @@
     flex: 0 0 auto;
     margin-top: 0.25rem;
     margin-bottom: 0.25rem;
+    margin-left: 0.125rem;
     margin-right: 0.125rem;
-    border-radius: 0.5rem;
-    padding-top: 0.25rem;
-    padding-bottom: 0.25rem;
-    padding-left: 0.5rem;
-    padding-right: 0.5rem;
     font-size: 0.8rem;
+    line-height: 1.3rem;
+
+    .velo-input-tag-text {
+      vertical-align: middle;
+    }
 
     .velo-input-tag-delete {
       margin-left: 0.25rem;
     }
   }
 
-  .velo-input-tag:not(:first-child) {
-    margin-left: 0.125rem;
-  }
-
   input {
+    margin-left: 0.125rem;
     outline: 0;
     padding: 0;
     border: 0;
@@ -142,10 +140,6 @@
     background: transparent;
     width: 1px;
     box-shadow: none;
-  }
-
-  input:not(:first-child) {
-    margin-left: 0.125rem;
   }
 
   input:focus {

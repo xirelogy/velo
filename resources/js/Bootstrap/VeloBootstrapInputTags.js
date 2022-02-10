@@ -135,10 +135,10 @@ export default class VeloBootstrapInputTags {
     _createTagElement(text) {
         const tagElement = document.createElement('span');
         tagElement.classList.add('velo-input-tag');
-        tagElement.classList.add('text-white');
-        tagElement.classList.add('bg-secondary');
+        tagElement.classList.add('badge');
+        tagElement.classList.add('badge-primary');
         tagElement.dataset.text = text;
-        tagElement.innerHTML = Xw.$.escapeHtml(text) + '<span class="velo-input-tag-delete text-white-50">&times;</span>';
+        tagElement.innerHTML = '<span class="velo-input-tag-text">' + Xw.$.escapeHtml(text) + '</span><span class="velo-input-tag-delete text-white-50">&times;</span>';
 
         const tagDeleteElement = tagElement.querySelectorAll('.velo-input-tag-delete')[0];
         tagDeleteElement.addEventListener('click', () => {
