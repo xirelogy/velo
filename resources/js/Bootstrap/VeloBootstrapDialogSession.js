@@ -55,8 +55,9 @@ export default class VeloBootstrapDialogSession {
         });
         _sessions.push(this);
 
-        // Set current z-index
+        // Set current z-index and reset height
         this._target.style.zIndex = baseZIndex + 50;
+        this._target.style.height = 'initial';
 
         // Show the dialog by animation
         const showArgs = {};
