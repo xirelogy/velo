@@ -18,7 +18,6 @@ export default class VeloBootstrapButtons {
 
         return new Xw.CommonFinalizable({
             onInit: () => {
-
                 const loadingElement = document.createElement('div');
                 loadingElement.setAttribute('role', 'status');
                 loadingElement.classList.add('spinner-border');
