@@ -229,6 +229,7 @@ export default class VeloBootstrapDialogs {
             onDismiss: () => {
                 _localDismiss(false);
             },
+            isClone: false,
         });
         okButtonElement.focus();
 

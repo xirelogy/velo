@@ -27,10 +27,11 @@ export default class VeloBootstrapDialogSession {
      */
     constructor(target, onDismiss, options) {
         // Accept arguments
-        this._target = Xw.$.requires(target);
+        this._templateTarget = Xw.$.requires(target);
         this._onDismiss = Xw.$.requires(onDismiss);
         const _options = Xw.$.defaultable(options, {});
         this._showMs = Xw.$.defaultable(_options.showMs, 300);
+        this._isClone = Xw.$.defaultable(_options.isClone, true);
 
         // Initial variables
         this._dialogListeners = new Map();
@@ -54,6 +55,14 @@ export default class VeloBootstrapDialogSession {
             zIndex: baseZIndex,
         });
         _sessions.push(this);
+
+        // Re-use target or copy target
+        if (this._isClone) {
+            this._target = this._templateTarget.cloneNode(true);
+            document.body.appendChild(this._target);
+        } else {
+            this._target = this._templateTarget;
+        }
 
         // Set current z-index and reset height
         this._target.style.zIndex = baseZIndex + 50;
@@ -148,6 +157,7 @@ export default class VeloBootstrapDialogSession {
         }
 
         // Remove mask element and pop session
+        if (this._isClone) this._target.remove();
         mask.remove();
         _sessions.pop();
     }
