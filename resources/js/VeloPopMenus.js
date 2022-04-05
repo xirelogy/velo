@@ -1,5 +1,6 @@
 import velo from './Velo';
 import Xw from '@xirelogy/xw';
+import VeloPopupInterface from './VeloPopupInterface';
 
 
 export default class VeloPopMenus {
@@ -18,6 +19,7 @@ export default class VeloPopMenus {
      * @param {HTMLElement} menu Menu element to be shown/hidden
      * @param {object} [options] Binding options
      * @param {string} [options.anchor] Anchor of the menu in relative to the element
+     * @return {VeloPopupInterface}
      */
     bindTrigger(trigger, menu, options) {
         if (this._inst) {

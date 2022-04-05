@@ -1,6 +1,7 @@
 import Xw from '@xirelogy/xw';
 import veloBootstrapCommon from './VeloBootstrapCommon';
 import { createPopper } from '@popperjs/core/lib/popper-lite.js';
+import VeloPopupInterface from "../VeloPopupInterface";
 
 
 /**
@@ -95,24 +96,71 @@ export default class VeloBootstrapPopMenus {
             }
         });
 
-        return {
-            showMenu: async (ev) => {
-                if (!Xw.doms.isShown(_menu)) {
+        return new class extends VeloPopupInterface {
+            /**
+             * @inheritDoc
+             */
+            getPopElement() {
+                return _menu;
+            }
+
+
+            /**
+             * @inheritDoc
+             */
+            isShown() {
+                return Xw.doms.isShown(_menu);
+            }
+
+
+            /**
+             * @inheritDoc
+             */
+            async show() {
+                if (!this.isShown()) {
                     await _optionsOnAsyncShow(_menu);
                 }
-            },
-            dismissMenu: async (ev) => {
-                if (Xw.doms.isShown(_menu)) {
+            }
+
+
+            /**
+             * @inheritDoc
+             */
+            async hide() {
+                if (this.isShown()) {
                     await _optionsOnAsyncHide(_menu);
                 }
-            },
-            toggleMenu: async (ev) => {
-                if (!Xw.doms.isShown(_menu)) {
-                    await _optionsOnAsyncShow(_menu);
-                } else {
-                    await _optionsOnAsyncHide(_menu);
-                }
-            },
+            }
+
+
+            /**
+             * @deprecated
+             * @param ev
+             * @return {Promise<void>}
+             */
+            async showMenu(ev) {
+                await this.show();
+            }
+
+
+            /**
+             * @deprecated
+             * @param ev
+             * @return {Promise<void>}
+             */
+            async dismissMenu(ev) {
+                await this.hide();
+            }
+
+
+            /**
+             * @deprecated
+             * @param ev
+             * @return {Promise<void>}
+             */
+            async toggleMenu(ev) {
+                await this.toggle();
+            }
         };
     }
 }
