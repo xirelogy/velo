@@ -18,6 +18,7 @@ use Xirelogy\Velo\View\Components\Container\NavBar;
 use Xirelogy\Velo\View\Components\Container\Page;
 use Xirelogy\Velo\View\Components\Container\Paginator;
 use Xirelogy\Velo\View\Components\Container\PopMenu;
+use Xirelogy\Velo\View\Components\Container\Popup;
 use Xirelogy\Velo\View\Components\Container\Toast;
 use Xirelogy\Velo\View\Components\Control\Button;
 use Xirelogy\Velo\View\Components\Control\CheckBox;
@@ -128,6 +129,8 @@ class Bridge extends BaseBridge
                 return new PaginatorItemComponentRenderer();
             case PopMenuItem::class:
                 return new PopMenuItemComponentRenderer();
+            case Popup::class:
+                return new PopupComponentRenderer();
             case Radio::class:
                 return new RadioComponentRenderer();
             case TabBar::class:

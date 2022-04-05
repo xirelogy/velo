@@ -6,6 +6,7 @@ import VeloBootstrapForms from './VeloBootstrapForms';
 import VeloBootstrapInputTags from './VeloBootstrapInputTags';
 import VeloBootstrapPaginator from './VeloBootstrapPaginator';
 import VeloBootstrapPopMenus from './VeloBootstrapPopMenus';
+import VeloBootstrapPopups from './VeloBootstrapPopups';
 import VeloBootstrapTabs from './VeloBootstrapTabs';
 import VeloBootstrapToasts from './VeloBootstrapToasts';
 
@@ -131,6 +132,9 @@ export default function boot(isDebug) {
         });
         velo.registerProvider(libraryName, 'VeloPopMenus', () => {
             return new VeloBootstrapPopMenus();
+        });
+        velo.registerProvider(libraryName, 'VeloPopups', () => {
+            return new VeloBootstrapPopups();
         });
         velo.registerProvider(libraryName, 'VeloTabs', (args) => {
             return new VeloBootstrapTabs(args);

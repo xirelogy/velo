@@ -180,6 +180,11 @@ time of writing).
 - Use the attribute `x-disabled` (without value) to specify the current item is disabled.
 - Use the attribute `x-href` to specify the current item is a link (to the href target specified in the attribute).
 
+#### Popup (`x-velo::container.popup`)
+
+- A popup is a pop content container.
+- Popup title can be specified in the `title` slot.
+
 ##### Radio (`x-velo::control.radio`)
 
 - A radio is a control with 'selected' or 'unselected' status.
