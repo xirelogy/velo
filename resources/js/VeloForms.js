@@ -26,10 +26,11 @@ export default class VeloForms {
     /**
      * Set control as invalid
      * @param {HTMLElement} control Target control to be set invalid
+     * @param {Error} [e] Associated error
      */
-    setControlInvalid(control) {
+    setControlInvalid(control, e) {
         if (this._inst) {
-            this._inst.setControlInvalid(control);
+            this._inst.setControlInvalid(control, e);
         }
     }
 
@@ -56,7 +57,7 @@ export default class VeloForms {
             this.resetControlValidity(control);
 
             if (e !== null) {
-                this.setControlInvalid(control);
+                this.setControlInvalid(control, e);
             }
         });
     }
